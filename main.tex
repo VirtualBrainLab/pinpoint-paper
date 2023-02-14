@@ -1,0 +1,99 @@
+\documentclass{article}
+
+\usepackage{template}
+\usepackage[acronym]{glossaries}
+\usepackage{hyperref}
+
+\title{Pinpoint: multi-probe trajectory planning for electrophysiology using an interactive web-based 3D environment}
+
+% TODO LIST
+
+% dan
+% - draft figures
+% - draft text (1500 word limit)
+% - author list: steven (for mri alignment?), probably not yoni/josh for this simplified paper
+% - video for (1) accounts, (2) automation
+
+% kenneth
+% - think about what will go on figure
+% - look at draft of results
+% - methods for ephys link
+
+% three figures
+% 1: overview figure
+% 1a large image of pinpoint
+% 1b zoom view of individual shanks
+% 1c zoom view of in-plane slice
+% 1d zoom view different probe options
+% 1e craniotomy
+% 1f surgery coordinates
+% 1g accounts
+
+% 2: coordinate spaces
+
+% 3: rig parts and collisions
+% 3a steinmetz lab well 
+% 3b IBL headbar
+% 3c 2-photon lens + headbar
+
+% 4: automation
+% 4a ephys link
+% 4b echoing
+% 4c automation
+
+\author[1,3,*]{Daniel Birman}
+\author[1]{Kenneth Yang}
+% \author[3]{The International Brain Lab}
+\author[1,3]{Nicholas A. Steinmetz}
+\affil[1]{Department of Biological Structure, University of Washington, Seattle, WA 98195, USA}
+% \affil[2]{Allen Institute, Seattle, WA 98109, USA}
+\affil[3]{International Brain Laboratory, ?, ?, ?}
+\affil[*]{Corresponding author: dbirman@uw.edu}
+
+\date{\today}
+
+
+% command examples
+% \newcommand{\NImagesToIntroduceCategory}{5}
+
+\begin{document}
+
+% acronym example
+% \newacronym{short}{short text}{long text}
+
+\maketitle
+% elife tools & resources paper
+% We welcome the submission of Short Reports, for example reporting the results of a single set of experiments, provided the conclusion is clear and justified, and the findings are novel and judged to be of high importance. Short Reports should not usually exceed 1,500 words in the main text, excluding the Materials and Methods, References, and Figure legends, with no more than three or four main display items (figures, tables, videos). Authors have more flexibility in the format, for example with a combined Results and Discussion section.
+
+\section{Abstract}
+Targeting deep brain structures during electrophysiology experiments requires intensive training and expertise. Even with experience, the time constraints of typical experimental setups often make it difficult to know whether an electrode is placed precisely in a target location and this complexity scales with the number of simultaneous electrodes used in a recording. Existing software for trajectory planning often requires extensive programming skills to run or investment in a specific hardware setup. Here, we present \textit{Pinpoint}, open-source software that allows for interactive exploration of insertion plans for multi-probe electrophysiology. Once an insertion plan is created, Pinpoint provides easy-to-use coordinates for targeting electrodes during experiments. Pinpoint also exposes real-time visualization features to help users see their probe positions in the live brain during recordings, as well as automation to make the insertion process more efficient. Pinpoint runs in a web browser with no dependencies or installation and has a minimal learning curve. This makes Pinpoint useful not only for experiment planning, but also for exploring mouse brain anatomy and for teaching new researchers about how \textit{in vivo} experiments are performed. 
+
+\clearpage
+
+\linenumbers
+
+\section{Introduction}
+\input{0_intro.tex}
+
+\section{Results and Discussion}
+\input{1_results_discussion.tex}
+
+\section{Methods}
+\input{2_methods.tex}
+
+\subsection{Acknowledgments}
+
+We acknowledge the generous support of the Washington Research Foundation Postdoctoral Fellowship to DB. Thank you to Kai Nylund for testing some early prototypes.
+
+WRF
+The Wellcome Trust (216324)
+The Simons Foundation
+
+\subsection{Contributions}
+
+% Contributions go here
+
+\printbibliography
+
+
+\end{document}
