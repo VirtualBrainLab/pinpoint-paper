@@ -1,25 +1,23 @@
 \subsection{Application and Code}
 
-Pinpoint is available as a website and a standalone application. New releases can be found on the \href{https://github.com/VirtualBrainLab/Pinpoint/releases}{release page} on Github. Documentation and tutorials can be found on our \href{https://virtualbrainlab.org/02_traj_planner/01_tp_intro.html}{main website}. 
+Pinpoint is available as a website and a standalone application. New releases can be found on the \href{https://github.com/VirtualBrainLab/Pinpoint/releases}{release page} on Github. Documentation and tutorials can be found on our \href{https://virtualbrainlab.org/pinpoint/installation_and_use.html}{main website}. 
 
-Pinpoint is developed using the Unity Real-Time Development Platform (Unity). Unity is a cross-platform game engine that supports the development of interactive 2D and 3D experiences. We use a number of specific Unity packages to support features in Pinpoint.
+Pinpoint is developed using the Unity Real-Time Development Platform (Unity). Unity is a cross-platform game engine that supports the development of interactive 2D and 3D experiences. We use a number of specific Unity packages to support features in Pinpoint. The base editor (v\ueditor) enables the core features of Pinpoint, including the 3D scene, use of materials and shaders, and point-and-click interaction. The base editor also enables us to distribute Pinopint for Desktop, WebGL, and iOS. The user interface was developed using the Unity UI package. Large assets are bundled and loaded asynchronously using the Addressables package. Pinpoint also uses several Unity Asset Store assets: Best HTTP/2, Unisave, Clean Flat UI, and UX Flat Icons.
 
-\begin{center}
-\begin{tabular}{ |p{3cm}|p{8cm}| }
-\hline
- Package & Description \\ 
- \hline
- Unity base editor 2021.3.10f1 & The main Unity editor enables the core features in Pinpoint, including the 3D scene, use of materials and shaders, the point-and-click interaction, and the user interface. \\ 
- \hline
- Addressables & Asynchronous loading of large files, such as the Common Coordinate Framework 3D models \\
- \hline
-\end{tabular}
-\end{center}
+Some of the functionality developed for Pinpoint is bundled in separate repositories, allowing other users to re-use these specific features in their own projects. The atlas features are enabled by the \href{https://github.com/VirtualBrainLab/BrainAtlas}{BrainAtlas package}. The electrophysiology manipulator link features are stored in the \href{https://github.com/VirtualBrainLab/ephys-link}{ephys-link repository}.
 
-\subsection{Coordinate spaces and atlases}
+\subsection{Atlases and transformations}
 
-To convert the mouse CCF \citep{wang2020allen} atlas into an anatomical MRI space we registered the CCF atlas to the 
+We define anatomical atlases in Pinpoint using a CoordinateSpace and a CoordinateTransform. The CoordinateSpace defines the transformation of coordinates in Unity ``World'' space into the atlas. For example, by default in Unity the Z axis points forward, the X axis to the right, and the Y axis up. The CCFSpace (a CoordinateSpace) rotates a vector such that it is redefined according to the anterior-poster, left-right, and ventral-dorsal axes instead of the world axes. According to the specifications, CCFSpace is defined such that the (0,0,0) coordinate is at the front, top, left coordinate. By collecting these rotations and offsets into a CoordinateSpace class we make it easy to extend Pinpoint in the future to other anatomical atlases. Because the CCF and therefore CCFSpace were defined from perfused brains they are deformed from the live mouse brain. We defined a second class, CoordinateTransform to reverse these deformations and make it possible to examine anatomical data in the space of individual mouse brains. Each CoordinateTransform defines the transformation of a point from a CoordinateSpace into a deformed space defined by anatomical data from a particular mouse or strain, or an average of several mice.
+
+To define each CoordinateTransform we registered the mouse CCF \citep{wang2020allen} atlas into an anatomical MRI space. Pinpoint ships with two CoordinateTransforms, the Needles atlas defined from 40 in-skull anatomical MRIs taken from p84 C57BL/6j mice after death \citep{dorr2008high} and the Toronto MRI atlas defined from 12 p65 C57BL/6j mice that were alive at the time of anatomical scanning \citep{qiu2018mouse}. Pinpoint also implements a rotation in each CoordinateTransform to level the Bregma-Lambda surface, pitching the CCF atlas up by 5 degrees \citep{international2022reproducibility}. 
+
+\subsection{Accounts}
+
+To save and load experimental plans we developed a login and insertion saving system for Pinpoint. Using Unisave, a Unity asset, we developed a backend database and front-end client to store information about insertions. Insertions are saved as ProbeInsertion objects, defined by their tip coordinate (ap, ml, dv) and probe angles (pitch, yaw, spin). 
+
+\subsection{Electrophysiology manipulator link}
 
 \subsection{Contributing}
 
-Pinpoint is an open-source project and is open to contributions from the neuroscience community. Instructions for developing and contributing to Pinpoint can be found on our \href{https://virtualbrainlab.org/02_traj_planner/05_tp_development.html}{development page}.
+Pinpoint is an open-source project and is open to contributions from the neuroscience community. Instructions for developing and contributing to Pinpoint can be found on our \href{https://virtualbrainlab.org/pinpoint/development.html}{development page}.
